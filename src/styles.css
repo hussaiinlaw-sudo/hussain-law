@@ -1,0 +1,180 @@
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap");
+@import "tailwindcss";
+
+@theme {
+  --color-navy: #0B1F3A;
+  --color-gold: #B89457;
+  --color-ivory: #F8F6F1;
+  --color-charcoal: #1B1B1B;
+  --color-pearl: #EDE7DA;
+  --font-ar: "IBM Plex Sans Arabic", Cairo, sans-serif;
+  --font-en: Manrope, Inter, sans-serif;
+  --shadow-premium: 0 24px 80px rgba(11,31,58,0.14);
+}
+
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    margin: 0;
+    min-width: 320px;
+    background: #f8f6f1;
+  }
+
+  a {
+    transition: color 180ms ease, border-color 180ms ease, background 180ms ease, transform 180ms ease;
+  }
+
+  button,
+  input,
+  textarea,
+  select {
+    font: inherit;
+  }
+
+  ::selection {
+    background: #b89457;
+    color: #0b1f3a;
+  }
+}
+
+@layer components {
+  .section {
+    @apply py-20 md:py-28;
+  }
+
+  .page {
+    @apply min-h-[70vh] py-20 md:py-28;
+  }
+
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 border px-6 py-3 text-sm font-bold transition focus:outline-none focus:ring-2 focus:ring-gold focus:ring-offset-2;
+  }
+
+  .btn-gold {
+    @apply border-gold bg-gold text-navy hover:bg-navy hover:text-white;
+  }
+
+  .btn-outline {
+    @apply border-white/35 bg-white/5 text-white hover:border-gold hover:text-gold;
+  }
+
+  .btn-navy {
+    @apply border-navy bg-navy text-white hover:border-gold hover:bg-gold hover:text-navy;
+  }
+
+  .icon-btn {
+    @apply grid h-11 w-11 place-items-center border border-white/20 text-white transition hover:border-gold hover:text-gold;
+  }
+
+  .icon-btn-light {
+    @apply border-gold/35 text-navy hover:border-gold hover:bg-white hover:text-gold;
+  }
+
+  .language-btn {
+    @apply inline-flex items-center gap-2 border border-gold/35 bg-white/55 px-3 py-2 text-sm font-bold text-navy transition hover:border-gold hover:bg-white hover:text-gold;
+  }
+
+  .site-logo-header {
+    @apply h-16 w-44 shrink-0 object-contain md:h-20 md:w-56;
+  }
+
+  .site-logo-footer {
+    @apply h-16 w-24 shrink-0 border border-gold/35 bg-white object-contain p-2 shadow-sm;
+  }
+
+  .nav-link {
+    @apply relative hover:text-gold;
+  }
+
+  .nav-link::after {
+    position: absolute;
+    inset-inline-start: 0;
+    bottom: -8px;
+    width: 0;
+    height: 1px;
+    content: "";
+    background: #b89457;
+    transition: width 180ms ease;
+  }
+
+  .nav-link:hover::after {
+    width: 100%;
+  }
+
+  .service-card {
+    @apply border border-gold/15 bg-ivory p-6 shadow-sm transition hover:-translate-y-1 hover:border-gold/40 hover:shadow-premium;
+  }
+
+  .blog-card {
+    @apply border border-gold/15 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:border-gold/40 hover:shadow-premium;
+  }
+
+  .field {
+    @apply w-full border border-gold/20 bg-white px-4 py-3 text-charcoal outline-none transition placeholder:text-charcoal/45 focus:border-gold focus:ring-2 focus:ring-gold/20;
+  }
+
+  .filter {
+    @apply border border-gold/20 px-4 py-2 text-sm font-semibold text-navy transition hover:border-gold hover:bg-ivory;
+  }
+
+  .filter.active {
+    @apply border-gold bg-gold text-navy;
+  }
+
+  .team-photo {
+    min-height: 280px;
+    display: grid;
+    place-items: center;
+    background:
+      linear-gradient(135deg, rgba(11, 31, 58, 0.92), rgba(11, 31, 58, 0.72)),
+      radial-gradient(circle at 30% 20%, rgba(184, 148, 87, 0.32), transparent 34%),
+      #0b1f3a;
+  }
+
+  .team-photo span {
+    display: grid;
+    width: 104px;
+    height: 104px;
+    place-items: center;
+    border: 1px solid rgba(184, 148, 87, 0.65);
+    border-radius: 999px;
+    color: #f8f6f1;
+    font-size: 2rem;
+    font-weight: 700;
+  }
+}
+
+.pattern {
+  background-image:
+    linear-gradient(30deg, transparent 35%, rgba(248, 246, 241, 0.9) 36%, transparent 37%),
+    linear-gradient(150deg, transparent 35%, rgba(248, 246, 241, 0.9) 36%, transparent 37%),
+    linear-gradient(90deg, transparent 44%, rgba(184, 148, 87, 0.8) 45%, transparent 46%);
+  background-size: 72px 72px;
+}
+
+.rtl .ps-12,
+[dir="rtl"] .ps-12 {
+  padding-right: 3rem;
+}
+
+.ltr .ps-12,
+[dir="ltr"] .ps-12 {
+  padding-left: 3rem;
+}
+
+@media (max-width: 640px) {
+  .hero h1 {
+    font-size: 2.55rem;
+  }
+
+  .btn {
+    width: 100%;
+  }
+}
