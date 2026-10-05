@@ -133,6 +133,15 @@
     inset-inline-end: 1.25rem;
   }
 
+  .contact-card {
+    @apply flex gap-4 border border-gold/15 bg-white p-5 shadow-sm transition hover:border-gold/45 hover:shadow-premium;
+  }
+
+  a.contact-card:hover h2,
+  a.contact-card:hover p {
+    @apply text-gold;
+  }
+
   .team-photo {
     min-height: 280px;
     display: grid;

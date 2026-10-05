@@ -578,6 +578,9 @@ function TeamPage({ t }) {
 }
 
 function ContactPage({ t }) {
+  const whatsappHref = getWhatsAppHref(t);
+  const phoneHref = `tel:${t.contact.phone.replace(/[^\d+]/g, "")}`;
+
   return (
     <main className="page">
       <div className="mx-auto grid max-w-7xl gap-10 px-4 lg:grid-cols-[1.1fr_0.9fr] lg:px-8">
@@ -604,10 +607,10 @@ function ContactPage({ t }) {
         </section>
         <aside className="space-y-5">
           <ContactCard icon={MapPin} title={t.contact.addressLabel} text={t.contact.address} />
-          <ContactCard icon={Phone} title={t.contact.phoneLabel} text={t.contact.phone} />
+          <ContactCard icon={Phone} title={t.contact.phoneLabel} text={t.contact.phone} href={phoneHref} />
           <ContactCard icon={Mail} title={t.contact.emailLabel} text={t.contact.email} />
           <ContactCard icon={BookOpen} title={t.contact.hoursLabel} text={t.contact.hours} />
-          <a className="btn btn-gold w-full justify-center" href={`https://wa.me/${t.contact.whatsappNumber}`}>
+          <a className="btn btn-gold w-full justify-center" href={whatsappHref} target="_blank" rel="noreferrer">
             <MessageCircle size={19} />
             {t.contact.whatsapp}
           </a>
@@ -625,7 +628,7 @@ function FloatingWhatsApp({ t }) {
   return (
     <a
       className="floating-whatsapp"
-      href={`https://wa.me/${t.contact.whatsappNumber}`}
+      href={getWhatsAppHref(t)}
       target="_blank"
       rel="noreferrer"
       aria-label={t.contact.whatsapp}
@@ -636,14 +639,33 @@ function FloatingWhatsApp({ t }) {
   );
 }
 
-function ContactCard({ icon: Icon, title, text }) {
-  return (
-    <div className="flex gap-4 border border-gold/15 bg-white p-5 shadow-sm">
+function getWhatsAppHref(t) {
+  const message = encodeURIComponent(t.contact.whatsappMessage || t.contact.title);
+  return `https://api.whatsapp.com/send?phone=${t.contact.whatsappNumber}&text=${message}`;
+}
+
+function ContactCard({ icon: Icon, title, text, href }) {
+  const content = (
+    <>
       <Icon className="shrink-0 text-gold" size={24} />
       <div>
         <h2 className="font-semibold text-navy">{title}</h2>
         <p className="mt-1 leading-7 text-charcoal/70">{text}</p>
       </div>
+    </>
+  );
+
+  if (href) {
+    return (
+      <a className="contact-card group" href={href}>
+        {content}
+      </a>
+    );
+  }
+
+  return (
+    <div className="contact-card">
+      {content}
     </div>
   );
 }
