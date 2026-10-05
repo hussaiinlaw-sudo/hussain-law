@@ -128,6 +128,11 @@
     @apply border-gold bg-gold text-navy;
   }
 
+  .floating-whatsapp {
+    @apply fixed bottom-5 z-50 inline-flex items-center gap-2 border border-gold/30 bg-[#25D366] px-5 py-3 text-sm font-bold text-white shadow-premium transition hover:-translate-y-1 hover:bg-navy focus:outline-none focus:ring-2 focus:ring-gold focus:ring-offset-2;
+    inset-inline-end: 1.25rem;
+  }
+
   .team-photo {
     min-height: 280px;
     display: grid;
@@ -176,5 +181,13 @@
 
   .btn {
     width: 100%;
+  }
+
+  .floating-whatsapp {
+    @apply h-14 w-14 justify-center rounded-full px-0 py-0;
+  }
+
+  .floating-whatsapp span {
+    @apply sr-only;
   }
 }

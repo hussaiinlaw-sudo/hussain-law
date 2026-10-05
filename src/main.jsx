@@ -76,6 +76,7 @@ function App() {
     <div className={`min-h-screen bg-ivory text-charcoal ${lang === "ar" ? "font-ar" : "font-en"}`}>
       <Header t={t} seo={seo} lang={lang} setLang={setLang} menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
       {page}
+      <FloatingWhatsApp t={t} />
       <Footer t={t} />
     </div>
   );
@@ -617,6 +618,21 @@ function ContactPage({ t }) {
         </aside>
       </div>
     </main>
+  );
+}
+
+function FloatingWhatsApp({ t }) {
+  return (
+    <a
+      className="floating-whatsapp"
+      href={`https://wa.me/${t.contact.whatsappNumber}`}
+      target="_blank"
+      rel="noreferrer"
+      aria-label={t.contact.whatsapp}
+    >
+      <MessageCircle size={24} />
+      <span>{t.contact.whatsapp}</span>
+    </a>
   );
 }
 
